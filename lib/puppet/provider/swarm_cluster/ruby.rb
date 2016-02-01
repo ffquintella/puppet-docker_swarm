@@ -34,7 +34,7 @@ Puppet::Type.type(:swarm_cluster).provide(:ruby) do
       Puppet.info("Checking if swarm is running")
        pid = `ps -ef | grep swarm | grep -v grep`
        ! pid.length.eql? 0
-   end
+   end  
 
    def create
      Puppet.info("Configuring Swarm Cluster")
