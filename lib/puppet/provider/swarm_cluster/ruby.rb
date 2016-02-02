@@ -8,10 +8,6 @@ Puppet::Type.type(:swarm_cluster).provide(:ruby) do
 
   commands :swarm => "swarm"
 
-  def interface
-    hostname = Socket.gethostname
-    IPSocket.getaddress(hostname)
-  end
 
   def swarm_conf
     cluster = resource[:cluster_type]
@@ -19,7 +15,7 @@ Puppet::Type.type(:swarm_cluster).provide(:ruby) do
     address = (resource[:address])
     port = (resource[:port])
     advertise = (resource[:advertise])
-    inteface = (resource[:inteface])
+    interface = (resource[:interface])
     path = (resource[:path])
     case
       when cluster.match(/create/)
