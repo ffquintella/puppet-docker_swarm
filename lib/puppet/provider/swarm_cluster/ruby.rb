@@ -19,6 +19,7 @@ Puppet::Type.type(:swarm_cluster).provide(:ruby) do
     address = (resource[:address])
     port = (resource[:port])
     advertise = (resource[:advertise])
+    inteface = (resource[:inteface])
     path = (resource[:path])
     case
       when cluster.match(/create/)
@@ -26,7 +27,7 @@ Puppet::Type.type(:swarm_cluster).provide(:ruby) do
       when cluster.match(/join/)
         [['join', "--advertise=#{interface}:2375", "#{backend}://#{address}:#{port}/#{path}"]]
       when cluster.match(/manage/)
-        [['join', "--advertise=#{interface}:2375", "#{backend}://#{address}:#{port}/#{path}"],['manage', '-H', "tcp://#{interface}:2376", "#{backend}://#{address}:#{port}/#{path}"], ['manage', '-H', ':4000', '--replication', "--advertise=#{advertise}:4000", "#{backend}://#{address}:#{port}/#{path}"]]
+        [['join', "--advertise=#{interface}:2375", "#{backend}://#{address}:#{port}/#{path}"],['manage', '-H', "tcp://#{interface}:2376", "#{backend}://#{address}:#{port}/#{path}"], ['manage', '-H', "tcp://#{interface}:4000", '--replication', "--advertise=#{advertise}:4000", "#{backend}://#{address}:#{port}/#{path}"]]
       end
    end
 
