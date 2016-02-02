@@ -34,8 +34,8 @@ Puppet::Type.newtype(:swarm_cluster) do
       desc "Address to advertise for the Swarm replication manager"
     end
 
-    newparam(:interface) do
-      desc "Interface to bind to" 
+    newparam(:net_interface) do
+      desc "Interface to bind to"
     end
 
     newparam(:path) do
